@@ -120,27 +120,27 @@ class FPM::Package::RPM < FPM::Package
       end
       self.dependencies = fixed_deps
 
-      # Convert 'rubygem-foo' provides values to 'rubygem(foo)'
-      # since that's what most rpm packagers seem to do.
-      self.provides = self.provides.collect do |provides|
-        first, remainder = provides.split("-", 2)
-        if first == "rubygem"
-          name, remainder = remainder.split(" ", 2)
-          # yield rubygem(name)...
-          "rubygem(#{name})#{remainder ? " #{remainder}" : ""}"
-        else
-          provides
-        end
-      end
-      self.dependencies = self.dependencies.collect do |dependency|
-        first, remainder = dependency.split("-", 2)
-        if first == "rubygem"
-          name, remainder = remainder.split(" ", 2)
-          "rubygem(#{name})#{remainder ? " #{remainder}" : ""}"
-        else
-          dependency
-        end
-      end
+#      # Convert 'rubygem-foo' provides values to 'rubygem(foo)'
+#      # since that's what most rpm packagers seem to do.
+#      self.provides = self.provides.collect do |provides|
+#        first, remainder = provides.split("-", 2)
+#        if first == "rubygem"
+#          name, remainder = remainder.split(" ", 2)
+#          # yield rubygem(name)...
+#          "rubygem(#{name})#{remainder ? " #{remainder}" : ""}"
+#        else
+#          provides
+#        end
+#      end
+#      self.dependencies = self.dependencies.collect do |dependency|
+#        first, remainder = dependency.split("-", 2)
+#        if first == "rubygem"
+#          name, remainder = remainder.split(" ", 2)
+#          "rubygem(#{name})#{remainder ? " #{remainder}" : ""}"
+#        else
+#          dependency
+#        end
+#      end
       #self.provides << "rubygem(#{self.name})"
     end
 
